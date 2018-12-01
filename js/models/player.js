@@ -61,8 +61,6 @@ Player.prototype.move = function() {
   //    this.x += this.vx;
   //  }
 
-
-  
   this.vy += this.g;
   this.y += this.vy;
   if(this.y > this.y0){
