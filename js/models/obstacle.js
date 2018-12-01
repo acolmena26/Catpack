@@ -1,4 +1,4 @@
-function Obstacle(ctx, y) {
+function Obstacle(ctx, y, vx) {
     this.img = new Image();
     this.img.src = "img/slimee.png";
     this.img.frames = 6;
@@ -11,7 +11,7 @@ function Obstacle(ctx, y) {
     this.y0 = this.y;
   
     this.vy = 0;
-    this.vx = -4;
+    this.vx = vx;
   
     
   

@@ -7,8 +7,9 @@ function Game(canvasElement) {
   this.gameScore = document.querySelector("#score-game span");
   this.gameFinalScore = document.querySelector("#final-score span");
   this.score = 0;
+  this.getHarder = 150;
   this.obstacles = [
-    new Obstacle(this.ctx, this.ctx.canvas.height * 0.55)
+    new Obstacle(this.ctx, this.ctx.canvas.height * 0.55, -4)
   ];
 
   this.fireball = [
@@ -25,20 +26,27 @@ Game.prototype.start = function() {
     this.score += 1;
     this.gameScore.innerText = this.score;
     this.newObstacleCount += 1;
-    var getHarder = 200;
 
-    if (this.newObstacleCount % 1500 && getHarder >= 30){
-      getHarder -= 3;
-    }
-
-    if (this.newObstacleCount % getHarder === 0){
+    if (this.newObstacleCount % this.getHarder === 0){
+      if (this.getHarder > 40){
+        this.getHarder -= 10;
+        console.log(this.getHarder);
+      }
       var max = 500;
       var min = 10;
       var random = Math.floor(Math.random() * (max - min) + min);
-      this.obstacles.push(new Obstacle(this.ctx, random));
+      if (this.score < 3000){
+        this.obstacles.push(new Obstacle(this.ctx, random, -6));
+      } else if (this.score < 6000){
+        this.obstacles.push(new Obstacle(this.ctx, random, -6));
+      } else if (this.score < 10000){
+        this.obstacles.push(new Obstacle(this.ctx, random, -10));
+      } else {
+        this.obstacles.push(new Obstacle(this.ctx, random, -12));
+      }
     }
 
-    if (this.newObstacleCount % (getHarder + 900) === 0){
+    if (this.newObstacleCount % (this.getHarder + 900) === 0){
       this.fireball.push(new FireBall(this.ctx));
     }
 
