@@ -6,3 +6,10 @@ var KEY_DOWN = 40;
 var KEY_LEFT = 37;
 var KEY_SPACE = 32;
 
+var MIN = 10;
+var MAX = 500;
+
+function getRandom() {
+    return Math.floor(Math.random() * (MAX - MIN) + MIN);
+}
+

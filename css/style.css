@@ -16,6 +16,18 @@ canvas {
   font-size: 25px;
 }
 
+#score-game2 {
+  position: absolute;
+  right: 20%;
+  top: 9%;
+  color: white;
+  font-size: 25px;
+}
+
+#score-game2.hidden{
+  opacity: 0;
+}
+
 #score-game.hidden{
   opacity: 0;
 }
@@ -47,11 +59,22 @@ canvas {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 70px;
+  bottom: 90px;
   display: inline;
   color: white;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
+}
+
+#game-over #final-coins {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 80px;
+  display: inline;
+  color: white;
+  text-align: center;
+  font-size: 20px;
 }
 
 #game-over button {
