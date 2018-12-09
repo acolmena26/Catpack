@@ -8,6 +8,7 @@ function Game(canvasElement) {
   this.coinsCollected = document.querySelector("#score-game2 span");
   this.gameFinalScore = document.querySelector("#final-score span");
   this.gameFinalCoins = document.querySelector("#final-coins span");
+  this.startBtn = document.querySelector("#start-btn");
   this.score = 0;
   this.getHarder = 150;
   this.coinsGotten = 0;
@@ -24,9 +25,15 @@ function Game(canvasElement) {
   this.coins = [
     // new Coins(this.ctx, this.ctx.canvas.height * 0.55, -4)
   ]
+
+  this.sounds = new Sounds();
 }
 
+
+
+
 Game.prototype.start = function() {
+
   this.intervalId = setInterval(function() {
     this.clear();
     this.drawAll();
@@ -125,11 +132,19 @@ Game.prototype.checkGameOver = function() {
   if (coinCollition) {
     var index = this.coins.indexOf(coinCollition);
     this.coinsGotten += 1;
+    this.sounds.play(3);
     this.coins.splice(index, 1);
   }
 
+  // if (collide2){
+  //   this.sounds.play(0);
+  //   this.gameOver(collide2);
+  // }
+
   if(collide || collide2) {
     this.gameOver();
+    this.sounds.play(2);
+    // this.sounds.pause(1);
   };
 };
 
@@ -142,10 +157,6 @@ Game.prototype.gameOver = function() {
   this.gameFinalScore.innerText = this.score;
   this.gameFinalCoins.innerText = this.coinsGotten;
   document.getElementById('game-over').classList.add('active');
-
-  // if (confirm("GAME OVER! Play again?")) {
-  //   location.reload();
-  // }
 };
 
 Game.prototype.clear = function() {

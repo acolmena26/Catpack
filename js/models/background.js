@@ -9,7 +9,6 @@ function Background(ctx) {
     this.h = ctx.canvas.height;
     this.img = new Image();
     this.img.src = "./img/game-background2.jpg";
-
 }
 
 Background.prototype.draw = function() {

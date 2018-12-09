@@ -20,6 +20,8 @@ function Player(ctx) {
   this.h = this.w * 2;
 
   this.drawCount = 0;
+  this.sounds = new Sounds();
+  this.startSound = 0;
 
   this.setListeners();
   
@@ -98,6 +100,10 @@ Player.prototype.onKeyDown = function(event) {
   switch (event.keyCode) {
     case KEY_UP:
       this.jump();
+      if (this.startSound === 0){
+        this.sounds.play(1);
+        this.startSound += 1;
+      }
       break;
     case KEY_RIGHT:
       this.vx = 10;
