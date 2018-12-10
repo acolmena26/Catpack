@@ -52,7 +52,7 @@ canvas {
   opacity: 1;
 }
 
-#game-over img {
+#game-over #background {
   height: 600px;
 }
 
@@ -109,4 +109,9 @@ canvas {
 
 #game-over button:hover {
   background-color: green;
+}
+
+#key {
+  height: 200px;
+  width: 100px;
 }

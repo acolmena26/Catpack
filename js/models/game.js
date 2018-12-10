@@ -149,6 +149,7 @@ Game.prototype.checkGameOver = function() {
   if (coinCollition) {
     var index = this.coins.indexOf(coinCollition);
     this.coinsGotten += 1;
+    this.score += 10;
     this.sounds.play(3);
     this.coins.splice(index, 1);
   }
