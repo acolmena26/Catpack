@@ -24,6 +24,7 @@ canvas {
   font-size: 25px;
 }
 
+
 #score-game2.hidden{
   opacity: 0;
 }
@@ -60,6 +61,17 @@ canvas {
   left: 50%;
   transform: translateX(-50%);
   bottom: 90px;
+  display: inline;
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
+#game-over #high-score {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 450px;
   display: inline;
   color: white;
   text-align: center;

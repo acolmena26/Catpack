@@ -8,6 +8,7 @@ function Game(canvasElement) {
   this.coinsCollected = document.querySelector("#score-game2 span");
   this.gameFinalScore = document.querySelector("#final-score span");
   this.gameFinalCoins = document.querySelector("#final-coins span");
+  this.highScore = document.querySelector("#high-score span");
   this.startBtn = document.querySelector("#start-btn");
   this.score = 0;
   this.getHarder = 150;
@@ -29,6 +30,22 @@ function Game(canvasElement) {
   this.sounds = new Sounds();
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  var score = Game.prototype.getScore();
+  console.log(score["highScore"]);
+});
+
+Game.prototype.getScore = function(){
+  var score = localStorage.getItem('score') || '{}';
+  return JSON.parse(score);
+}
+
+Game.prototype.addScore = function(name, value) {
+  var score = Game.prototype.getScore();
+  score[name] = value;
+
+  localStorage.setItem('score', JSON.stringify(score));
+}
 
 
 
@@ -150,10 +167,17 @@ Game.prototype.checkGameOver = function() {
 
 Game.prototype.gameOver = function() {
   console.log('game over');
-  // clearInterval(this.intervalId);
   clearInterval(this.intervalId);
   document.getElementById("score-game").classList.add('hidden');
   document.getElementById("score-game2").classList.add('hidden');
+  var score = Game.prototype.getScore();
+  if (this.score > score["highScore"]){
+    var highscore = Game.prototype.addScore("highScore", this.score);
+    this.highScore.innerText = this.score;
+    console.log(highscore);
+  } else {
+    this.highScore.innerText = score["highScore"];
+  }
   this.gameFinalScore.innerText = this.score;
   this.gameFinalCoins.innerText = this.coinsGotten;
   document.getElementById('game-over').classList.add('active');
